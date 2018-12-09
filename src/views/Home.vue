@@ -1,0 +1,46 @@
+<template>
+  <article :books="books">
+  </article>
+</template>
+
+<script>
+// @ is an alias to /src
+  import { mapState } from 'vuex';
+
+  export default {
+    name: 'Home',
+    computed: {
+      ...mapState(['books'])
+    },
+  };
+</script>
+
+<style scoped lang="scss">
+  .content {
+    margin: auto;
+    text-align: center;
+    margin-top: 50px;
+    width: 90%;
+    border-left: 3px solid #f50;
+    border-right: 3px solid #0f5;
+    transition: width 0.5s;
+    @media screen and (min-width: 710px) {
+      width: 500px;
+      position: relative;
+
+      &:hover {
+        width: 700px;
+      }
+    }
+  }
+
+  .content .container {
+    width: 90%;
+    margin: auto;
+
+    @media screen and (min-width: 710px) {
+      width: 500px;
+      height: 360px;
+    }
+  }
+</style>
