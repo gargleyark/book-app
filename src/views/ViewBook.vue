@@ -26,8 +26,10 @@
         .then(book => this.book = book)
     },
     updated() {
-      this.getBook(this.$route.params.id)
-        .then(book => this.book = book)
+      if (this.book.id !== this.$route.params.id) {
+        this.getBook(this.$route.params.id)
+          .then(book => this.book = book)
+      }
     },
     methods: {
       ...mapActions(['getBook']),

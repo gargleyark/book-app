@@ -1,6 +1,6 @@
 <template>
   <div class="shop">
-    <SearchForm />
+    <SearchForm :query="query"/>
   </div>
 </template>
 
@@ -13,6 +13,12 @@
     components: {
       SearchForm
     },
+    data() {
+      return {
+        query: this.$route.query.q,
+        exact: this.$route.query.exact
+      }
+    }
   }
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <div class="book-list">
     <h2>Books</h2>
-    <BookLineItem v-for="(book, index) in books" :even="index % 2 === 0" :key="index" :book="book"/>
+    <BookLineItem v-for="(book, index) in books" :even="index % 2 === 0" :key="book.id" :book="book"/>
   </div>
 </template>
 

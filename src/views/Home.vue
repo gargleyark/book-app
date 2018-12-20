@@ -1,5 +1,6 @@
 <template>
-  <article :books="books">
+  <article>
+    <HomeInfoBox />
   </article>
 </template>
 
@@ -7,11 +8,13 @@
 // @ is an alias to /src
   import { mapState } from 'vuex';
 
+  import HomeInfoBox from '@/components/HomeInfoBox'
+
   export default {
-    name: 'Home',
-    computed: {
-      ...mapState(['books'])
+    components: {
+      HomeInfoBox
     },
+    name: 'Home',
   };
 </script>
 

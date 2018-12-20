@@ -17,6 +17,13 @@ const bindingOptions = {
   materials: require('./data/binding/materials.json'),
 }
 
+const getRegExp = (query, exact) => {
+  if (!exact) {
+    return new RegExp(`\\w*${query}(\\w|\\s|\\(|\\))*`, 'i')
+  }
+  return new RegExp(`"${query}"`)
+}
+
 const app = express()
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -57,8 +64,20 @@ app.get('/get/book/:id', (req, res) => {
 app.get('/query/books', (req, res) => {
   console.log('querying books')
   const query = decodeURI(req.query.q)
-  const queryRegExp = new RegExp(query, 'i')
-  res.send(data.filter(book => JSON.stringify(book).match(queryRegExp)))
+  const exact = decodeURI(req.query.exact) || false
+
+  const queryRegExp = getRegExp(query, exact)
+
+  console.log(queryRegExp)
+
+  res.send(data.filter((book) => {
+    const match = JSON.stringify(book).match(queryRegExp)
+    book.match = match
+    return match
+  }))
+  data.forEach((book) => {
+    delete book.match
+  })
 })
 
 app.get('/get/books/template', (req, res) => {

@@ -24,6 +24,10 @@
       Button,
       BookList
     },
+    props: {
+      query: String,
+      exact: String
+    },
     data() {
       return {
         matchingOptions: [],
@@ -31,6 +35,12 @@
         filteredBooks: [],
         error: '',
         changeSearchBoxValue: false
+      }
+    },
+    mounted() {
+      if (this.query) {
+        this.search = this.query
+        this.getMatchingBooks(!!this.exact)
       }
     },
     methods: {
@@ -51,12 +61,12 @@
         this.search = e.target.innerText
         this.getMatchingBooks()
       },
-      getMatchingBooks() {
+      getMatchingBooks(exact) {
         this.error = ''
         this.matchingOptions = []
         this.changeSearchBoxValue = true
 
-        this.getBooksByQuery(this.search).then(data => {
+        this.getBooksByQuery(this.search, exact).then(data => {
           this.changeSearchBoxValue = false
           this.filteredBooks = data
 
