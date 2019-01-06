@@ -3,27 +3,27 @@
 </template>
 
 <script>
-  export default {
-    name: 'TextInput',
-    props: {
-      keyUp: Function,
-      label: String,
-      value: String,
-      controlled: Boolean
-    },
-    data() {
-      return {
-        textInput: this.value
-      }
-    },
-    watch: { 
-      controlled(next) {
-        if (next) {
-          this.textInput = this.value
-        }
-      }
+export default {
+  name: 'TextInput',
+  props: {
+    keyUp: Function,
+    label: String,
+    value: String,
+    controlled: Boolean,
+  },
+  data() {
+    return {
+      textInput: this.value,
     }
-  };
+  },
+  watch: {
+    controlled(next) {
+      if (next) {
+        this.textInput = this.value
+      }
+    },
+  },
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

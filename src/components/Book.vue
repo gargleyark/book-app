@@ -1,7 +1,7 @@
 <template>
   <section class="book-view">
     <div class="categories">
-      <span><router-link :to="`/search/?q=${book.categories}`">{{ book.categories }}</router-link></span>
+      <span><router-link :to="`/search/?q=${book.categories}&exact=true`">{{ book.categories }}</router-link></span>
     </div>
     <div class="overview">
       <h1>{{ book.title }}</h1>
@@ -59,12 +59,12 @@
 </template>
 
 <script>
-  export default {
-    name: 'book',
-    props: {
-      book: Object
-    },
-  };
+export default {
+  name: 'book',
+  props: {
+    book: Object,
+  },
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

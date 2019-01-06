@@ -5,18 +5,18 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex';
-  import BookList from '@/components/BookList'
+import { mapState } from 'vuex'
+import BookList from '@/components/BookList'
 
-  export default {
-    name: 'shop',
-    components: {
-      BookList
-    },
-    computed: {
-      ...mapState(['books'])
-    },
-  }
+export default {
+  name: 'shop',
+  components: {
+    BookList,
+  },
+  computed: {
+    ...mapState(['books']),
+  },
+}
 </script>
 
 <style scoped lang="scss">

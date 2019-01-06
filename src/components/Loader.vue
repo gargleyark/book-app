@@ -7,7 +7,9 @@
 <style scoped lang="scss">
   .container {
     position: relative;
-    min-height: 300px;
+    height: 0px;
+    padding: 0;
+    margin: 0;
   }
 
   .loader {

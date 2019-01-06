@@ -29,58 +29,58 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex';
+import { mapState } from 'vuex'
 
-  import TextInput from '@/components/TextInput.vue';
-  import SelectInput from '@/components/SelectInput.vue';
-  import NumberInput from '@/components/NumberInput.vue';
-  import DateInput from '@/components/DateInput.vue';
-  import CheckboxInput from '@/components/CheckboxInput.vue';
+import TextInput from '@/components/TextInput.vue'
+import SelectInput from '@/components/SelectInput.vue'
+import NumberInput from '@/components/NumberInput.vue'
+import DateInput from '@/components/DateInput.vue'
+import CheckboxInput from '@/components/CheckboxInput.vue'
 
-  export default {
-    name: 'BookForm',
-    components: {
-      TextInput,
-      SelectInput,
-      NumberInput,
-      CheckboxInput,
-      DateInput
-    },
-    props: {
-      template: Object,
-      updateBook: Function,
-      bookIds: Array
-    },
-    data() {
-      return {
-        book: {
-          volumes: 1,
-        }
-      }
-    },
-    methods: {
-      updateNewBook(attributeTree, value) {
-        let nextAttribute = this.book
-        let index = 0
-
-        while (attributeTree[index]) {
-          if (attributeTree[index + 1] === undefined) {
-            if (value) {
-              nextAttribute[attributeTree[index]] = value
-            } else {
-              delete nextAttribute[attributeTree[index]]
-            }
-          } else {
-            nextAttribute[attributeTree[index]] = nextAttribute[attributeTree[index]] || {}
-            nextAttribute = nextAttribute[attributeTree[index]]
-          }
-          index+=1
-        }
-
-        this.updateBook(this.book)
-      }
+export default {
+  name: 'BookForm',
+  components: {
+    TextInput,
+    SelectInput,
+    NumberInput,
+    CheckboxInput,
+    DateInput,
+  },
+  props: {
+    template: Object,
+    updateBook: Function,
+    bookIds: Array,
+  },
+  data() {
+    return {
+      book: {
+        volumes: 1,
+      },
     }
-  };
+  },
+  methods: {
+    updateNewBook(attributeTree, value) {
+      let nextAttribute = this.book
+      let index = 0
+
+      while (attributeTree[index]) {
+        if (attributeTree[index + 1] === undefined) {
+          if (value) {
+            nextAttribute[attributeTree[index]] = value
+          } else {
+            delete nextAttribute[attributeTree[index]]
+          }
+        } else {
+          nextAttribute[attributeTree[index]] = nextAttribute[attributeTree[index]] || {}
+          nextAttribute = nextAttribute[attributeTree[index]]
+        }
+        index += 1
+      }
+
+      this.updateBook(this.book)
+    },
+  },
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

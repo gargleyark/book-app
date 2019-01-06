@@ -4,27 +4,27 @@
     <select :name="label" v-model="selectedOption" @change="() => click(selectedOption)">
       <option v-for="(option, index) in options" v-bind:value="option" :key="option" :value="option">{{ option }}</option>
     </select>
-  </span> 
+  </span>
 </template>
 
 <script>
-  export default {
-    name: 'SelectInput',
-    props: {
-      click: Function,
-      label: String,
-      options: Array,
-      value: String
-    },
-    data() {
-      return {
-        selectedOption: this.options[0]
-      }
-    },
-    mounted() {
-      this.click(this.options[0])
+export default {
+  name: 'SelectInput',
+  props: {
+    click: Function,
+    label: String,
+    options: Array,
+    value: String,
+  },
+  data() {
+    return {
+      selectedOption: this.options[0],
     }
-  };
+  },
+  mounted() {
+    this.click(this.options[0])
+  },
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

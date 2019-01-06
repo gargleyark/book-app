@@ -1,18 +1,18 @@
 <template>
   <span>
     <label :for="label">{{ label }}</label>
-    <input type="checkbox" :name="label" @click="click"/> 
+    <input type="checkbox" :name="label" @click="click"/>
   </span>
 </template>
 
 <script>
-  export default {
-    name: 'CheckboxInput',
-    props: {
-      click: Function,
-      label: String
-    },
-  };
+export default {
+  name: 'CheckboxInput',
+  props: {
+    click: Function,
+    label: String,
+  },
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -6,19 +6,19 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex';
+import { mapState } from 'vuex'
 
-  import BookLineItem from '@/components/BookLineItem.vue';
+import BookLineItem from '@/components/BookLineItem.vue'
 
-  export default {
-    name: 'BookList',
-    props: {
-      books: Array
-    },
-    components: {
-      BookLineItem,
-    },
-  };
+export default {
+  name: 'BookList',
+  props: {
+    books: Array,
+  },
+  components: {
+    BookLineItem,
+  },
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

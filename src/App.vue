@@ -12,28 +12,28 @@
 </template>
 
 <script>
-  import { mapState, mapMutations, mapActions } from 'vuex';
+import { mapState, mapMutations, mapActions } from 'vuex'
 
-  import Footer from '@/components/Footer.vue'
-  import Loader from '@/components/Loader.vue'
+import Footer from '@/components/Footer.vue'
+import Loader from '@/components/Loader.vue'
 
-  export default {
-    "name": "App",
-    components: {
-      Footer,
-      Loader
-    },
-    mounted() {
-      this.getBooks()
-      this.getFullBookTemplate()
-    },
-    methods: {
-      ...mapActions(['getFullBookTemplate', 'getBooks']),
-    },
-    computed: {
-      ...mapState(['loading'])
-    },
-  };
+export default {
+  name: 'App',
+  components: {
+    Footer,
+    Loader,
+  },
+  mounted() {
+    this.getBooks()
+    this.getFullBookTemplate()
+  },
+  methods: {
+    ...mapActions(['getFullBookTemplate', 'getBooks']),
+  },
+  computed: {
+    ...mapState(['loading']),
+  },
+}
 </script>
 
 <style lang="scss">

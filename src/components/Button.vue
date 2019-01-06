@@ -3,13 +3,13 @@
 </template>
 
 <script>
-  export default {
-    name: 'Button',
-    props: {
-      action: Function,
-      text: String,
-    },
-  };
+export default {
+  name: 'Button',
+  props: {
+    action: Function,
+    text: String,
+  },
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -1,21 +1,28 @@
 <template>
-  <article>
-    <HomeInfoBox />
+  <article class="content">
+    <section>
+      <HomeInfoBox />
+    </section>
+    <section>
+      <HomeCategoriesGraph />
+    </section>
   </article>
 </template>
 
 <script>
 // @ is an alias to /src
-  import { mapState } from 'vuex';
+import { mapState } from 'vuex'
 
-  import HomeInfoBox from '@/components/HomeInfoBox'
+import HomeInfoBox from '@/components/HomeInfoBox'
+import HomeCategoriesGraph from '@/components/HomeCategoriesGraph'
 
-  export default {
-    components: {
-      HomeInfoBox
-    },
-    name: 'Home',
-  };
+export default {
+  components: {
+    HomeInfoBox,
+    HomeCategoriesGraph,
+  },
+  name: 'Home',
+}
 </script>
 
 <style scoped lang="scss">
@@ -24,26 +31,23 @@
     text-align: center;
     margin-top: 50px;
     width: 90%;
-    border-left: 3px solid #f50;
-    border-right: 3px solid #0f5;
     transition: width 0.5s;
-    @media screen and (min-width: 710px) {
-      width: 500px;
-      position: relative;
+    display: flex;
+    flex-direction: column;
 
-      &:hover {
-        width: 700px;
+    @media screen and (min-width: 768px) {
+      width: 600px;
+      flex-direction: row;
+
+      > section {
+        width: 50%;
+        display: inline-block;
       }
     }
-  }
 
-  .content .container {
-    width: 90%;
-    margin: auto;
-
-    @media screen and (min-width: 710px) {
-      width: 500px;
-      height: 360px;
+    @media screen and (min-width: 1200px) {
+      width: 1000px;
     }
   }
+
 </style>

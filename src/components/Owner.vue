@@ -9,28 +9,28 @@
       </div>
       <div v-if="hasAcquisitionDate()">
         Aquired the book in {{ owner.acquisition.date.year }}
-        <span v-if="owner.acquisition.location"> while living in {{ owner.acquisition.location }}.</span>
+        <span v-if="owner.acquisition.location"> in {{ owner.acquisition.location }}.</span>
       </div>
     </div>
   </section>
 </template>
 
 <script>
-  export default {
-    name: 'owner',
-    props: {
-      owner: Object
-    },
-    methods: {
-      hasLifeDate() {
-        return this.owner.birth && this.owner.birth.date && this.owner.birth.date.year
+export default {
+  name: 'owner',
+  props: {
+    owner: Object,
+  },
+  methods: {
+    hasLifeDate() {
+      return this.owner.birth && this.owner.birth.date && this.owner.birth.date.year
           || this.owner.death && this.owner.death.date && this.owner.death.date.year
-      },
-      hasAcquisitionDate() {
-        return this.owner.acquisition && this.owner.acquisition.date && this.owner.acquisition.date.year
-      }
-    }
-  };
+    },
+    hasAcquisitionDate() {
+      return this.owner.acquisition && this.owner.acquisition.date && this.owner.acquisition.date.year
+    },
+  },
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

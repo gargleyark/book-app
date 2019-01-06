@@ -25,54 +25,55 @@
 </template>
 
 <script>
-  import TextInput from '@/components/TextInput.vue';
-  import SelectInput from '@/components/SelectInput.vue';
-  import NumberInput from '@/components/NumberInput.vue';
-  import DateInput from '@/components/DateInput.vue';
-  import CheckboxInput from '@/components/CheckboxInput.vue';
-  import Button from '@/components/Button'
-  export default {
-    name: 'OwnerForm',
-    components: {
-      TextInput,
-      SelectInput,
-      NumberInput,
-      CheckboxInput,
-      DateInput,
-      Button
-    },
-    props: {
-      id: Number,
-      updateOwner: Function,
-      deleteOwner: Function,
-      index: Number
-    },
-    methods: {
-      updateThisOwner(attributeTree, value) {
-        let nextAttribute = this.owner
-        let index = 0
+import TextInput from '@/components/TextInput.vue'
+import SelectInput from '@/components/SelectInput.vue'
+import NumberInput from '@/components/NumberInput.vue'
+import DateInput from '@/components/DateInput.vue'
+import CheckboxInput from '@/components/CheckboxInput.vue'
+import Button from '@/components/Button'
 
-        while (attributeTree[index]) {
-          if (attributeTree[index + 1] === undefined) {
-            nextAttribute[attributeTree[index]] = value
-          } else {
-            nextAttribute[attributeTree[index]] = nextAttribute[attributeTree[index]] || {}
-            nextAttribute = nextAttribute[attributeTree[index]]
-          }
-          index+=1
+export default {
+  name: 'OwnerForm',
+  components: {
+    TextInput,
+    SelectInput,
+    NumberInput,
+    CheckboxInput,
+    DateInput,
+    Button,
+  },
+  props: {
+    id: Number,
+    updateOwner: Function,
+    deleteOwner: Function,
+    index: Number,
+  },
+  methods: {
+    updateThisOwner(attributeTree, value) {
+      let nextAttribute = this.owner
+      let index = 0
+
+      while (attributeTree[index]) {
+        if (attributeTree[index + 1] === undefined) {
+          nextAttribute[attributeTree[index]] = value
+        } else {
+          nextAttribute[attributeTree[index]] = nextAttribute[attributeTree[index]] || {}
+          nextAttribute = nextAttribute[attributeTree[index]]
         }
+        index += 1
+      }
 
-        this.updateOwner(this.index, this.owner)
+      this.updateOwner(this.index, this.owner)
+    },
+  },
+  computed: {
+    owner() {
+      return {
+        id: this.id,
       }
     },
-    computed: {
-      owner() {
-        return {
-          id: this.id
-        }
-      }
-    }
-  };
+  },
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -81,7 +82,7 @@
     display: inline-block;
     width: 35%;
     padding: 5%;
-    
+
   }
 </style>
 

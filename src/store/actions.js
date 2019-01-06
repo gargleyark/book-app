@@ -144,10 +144,11 @@ export default {
           reject({ error: e })
         })
     }),
-  getBooksByQuery: (context, search, exact) =>
+  getBooksByQuery: (context, data) =>
     new Promise((resolve, reject) => {
       context.commit('setLoadingState', true)
-      fetch(`http://localhost:3001/query/books/?q=${encodeURI(search)}${(exact && '&exact=true') ||
+      fetch(`http://localhost:3001/query/books/?q=${encodeURI(data.search)}${(data.exact &&
+          '&exact=true') ||
           ''}`)
         .then(response => response.json())
         .then((books) => {

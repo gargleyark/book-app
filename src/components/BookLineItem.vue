@@ -2,7 +2,7 @@
   <div class="book-listing-container" :class="{even: even}">
     <router-link :to="`/view/${book.id}`">
       <span class="book-id">{{ book.id }}</span><span class="book-name">{{book.title}}</span>
-      <p class="author">{{ book.author || 'Anon.' }}, {{ book.publication.date.year }}<span class="searchMatch" v-if="book.match">, matched "{{ book.match[0].replace(/"/g, '') }}"</span></p>
+      <p class="author">{{ book.author || 'Anon.' }}, <span v-if="book.publication.date.approximate">abt. </span>{{ book.publication.date.year }}<span class="searchMatch" v-if="book.match">, matched "{{ book.match[0].replace(/"/g, '') }}"</span></p>
     </router-link>
   </div>
 </template>
@@ -13,9 +13,9 @@ export default {
   name: 'BookLineItem',
   props: {
     book: Object,
-    even: Boolean
+    even: Boolean,
   },
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

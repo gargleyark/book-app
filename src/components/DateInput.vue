@@ -14,40 +14,40 @@
 </template>
 
 <script>
-  import CheckboxInput from '@/components/CheckboxInput'
+import CheckboxInput from '@/components/CheckboxInput'
 
-  export default {
-    name: 'DateInput',
-    components: {
-      CheckboxInput
-    },
-    props: {
-      keyUp: Function,
-      label: String
-    },
-    data() {
-      return {
-        dateObject: {},
-        dayInput: '',
-        monthInput: '',
-        yearInput: '',
-        approximate: false
-      }
-    },
-    methods: {
-      setDateValue(name, value) {
-        const updatedDateObject = this.dateObject
-        
-        if (value === undefined || value === '') {
-          delete updatedDateObject[name]
-        } else {
-          updatedDateObject[name] = value
-        }
-        
-        this.keyUp(updatedDateObject)
-      }
+export default {
+  name: 'DateInput',
+  components: {
+    CheckboxInput,
+  },
+  props: {
+    keyUp: Function,
+    label: String,
+  },
+  data() {
+    return {
+      dateObject: {},
+      dayInput: '',
+      monthInput: '',
+      yearInput: '',
+      approximate: false,
     }
-  };
+  },
+  methods: {
+    setDateValue(name, value) {
+      const updatedDateObject = this.dateObject
+
+      if (value === undefined || value === '') {
+        delete updatedDateObject[name]
+      } else {
+        updatedDateObject[name] = value
+      }
+
+      this.keyUp(updatedDateObject)
+    },
+  },
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -6,35 +6,40 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex'
-  import Book from '@/components/Book'
-  import Owner from '@/components/Owner'
+import { mapActions } from 'vuex'
+import Book from '@/components/Book'
+import Owner from '@/components/Owner'
 
-  export default {
-    name: 'bookDetail',
-    components: {
-      Book,
-      Owner
-    },
-    data() {
-      return {
-        book: {}
-      }
-    },
-    mounted() {
-      this.getBook(this.$route.params.id)
-        .then(book => this.book = book)
-    },
-    updated() {
-      if (this.book.id !== this.$route.params.id) {
-        this.getBook(this.$route.params.id)
-          .then(book => this.book = book)
-      }
-    },
-    methods: {
-      ...mapActions(['getBook']),
+export default {
+  name: 'bookDetail',
+  components: {
+    Book,
+    Owner,
+  },
+  data() {
+    return {
+      book: {},
     }
-  }
+  },
+  mounted() {
+    this.getBook(this.bookId)
+      .then(book => this.book = book)
+  },
+  updated() {
+    if (this.book.id !== this.bookId) {
+      this.getBook(this.bookId)
+        .then(book => this.book = book)
+    }
+  },
+  methods: {
+    ...mapActions(['getBook']),
+  },
+  computed: {
+    bookId() {
+      return this.$route.params.id
+    },
+  },
+}
 </script>
 
 <style scoped lang="scss">

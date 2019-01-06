@@ -11,75 +11,75 @@
 </template>
 
 <script>
-  import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions } from 'vuex'
 
-  import TextInput from '@/components/TextInput.vue';
-  import Button from '@/components/Button'
-  import BookList from '@/components/BookList'
+import TextInput from '@/components/TextInput.vue'
+import Button from '@/components/Button'
+import BookList from '@/components/BookList'
 
-  export default {
-    name: 'SearchForm',
-    components: {
-      TextInput,
-      Button,
-      BookList
-    },
-    props: {
-      query: String,
-      exact: String
-    },
-    data() {
-      return {
-        matchingOptions: [],
-        search: '',
-        filteredBooks: [],
-        error: '',
-        changeSearchBoxValue: false
-      }
-    },
-    mounted() {
-      if (this.query) {
-        this.search = this.query
-        this.getMatchingBooks(!!this.exact)
-      }
-    },
-    methods: {
-      ...mapActions(['getBooksByQuery']),
-      getAutoCompleteOptions(text) {
-        const textRegExp = new RegExp(text, 'i')
-
-        if (text.length > 2) {
-          this.matchingOptions = this.autoCompleteOptions
-            .filter(option => option.match(textRegExp))
-            .map(option => option.split(textRegExp))
-        } else {
-          this.matchingOptions = []
-        }
-        this.search = text
-      },
-      autoCompleteSearchCriteria(e) {
-        this.search = e.target.innerText
-        this.getMatchingBooks()
-      },
-      getMatchingBooks(exact) {
-        this.error = ''
-        this.matchingOptions = []
-        this.changeSearchBoxValue = true
-
-        this.getBooksByQuery(this.search, exact).then(data => {
-          this.changeSearchBoxValue = false
-          this.filteredBooks = data
-
-          if (!data.length) {
-            this.error = "No results found"
-          }
-        }).catch(e => this.changeSearchBoxValue = false)
-      }
-    },
-    computed: {
-      ...mapState(['autoCompleteOptions'])
+export default {
+  name: 'SearchForm',
+  components: {
+    TextInput,
+    Button,
+    BookList,
+  },
+  props: {
+    query: String,
+    exact: String,
+  },
+  data() {
+    return {
+      matchingOptions: [],
+      search: '',
+      filteredBooks: [],
+      error: '',
+      changeSearchBoxValue: false,
     }
-  };
+  },
+  mounted() {
+    if (this.query) {
+      this.search = this.query
+      this.getMatchingBooks(this.exact && this.exact === 'true')
+    }
+  },
+  methods: {
+    ...mapActions(['getBooksByQuery']),
+    getAutoCompleteOptions(text) {
+      const textRegExp = new RegExp(text, 'i')
+
+      if (text.length > 2) {
+        this.matchingOptions = this.autoCompleteOptions
+          .filter(option => option.match(textRegExp))
+          .map(option => option.split(textRegExp))
+      } else {
+        this.matchingOptions = []
+      }
+      this.search = text
+    },
+    autoCompleteSearchCriteria(e) {
+      this.search = e.target.innerText
+      this.getMatchingBooks()
+    },
+    getMatchingBooks(exact) {
+      this.error = ''
+      this.matchingOptions = []
+      this.changeSearchBoxValue = true
+
+      this.getBooksByQuery({ search: this.search, exact: exact === true }).then((data) => {
+        this.changeSearchBoxValue = false
+        this.filteredBooks = data
+
+        if (!data.length) {
+          this.error = 'No results found'
+        }
+      }).catch(e => this.changeSearchBoxValue = false)
+    },
+  },
+  computed: {
+    ...mapState(['autoCompleteOptions']),
+  },
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -114,7 +114,7 @@
       cursor: pointer;
       padding: 8px;
       color: #888;
-      
+
       &:hover {
         background: white;
       }

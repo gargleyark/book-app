@@ -3,18 +3,18 @@
 </template>
 
 <script>
-  export default {
-    name: 'NumberInput',
-    props: {
-      keyUp: Function,
-      label: String,
-    },
-    data() {
-      return {
-        numberInput: 1
-      }
+export default {
+  name: 'NumberInput',
+  props: {
+    keyUp: Function,
+    label: String,
+  },
+  data() {
+    return {
+      numberInput: 1,
     }
-  };
+  },
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
